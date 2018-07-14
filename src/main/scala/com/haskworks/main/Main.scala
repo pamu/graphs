@@ -1,6 +1,6 @@
 package com.haskworks.main
 
-import com.haskworks.graph.{AdjacentListGraph, DetectCycleUnDirected, GraphTraversal, Path}
+import com.haskworks.graph._
 
 object Main {
 
@@ -58,6 +58,20 @@ object Main {
     val simpleGraphCycle = DetectCycleUnDirected.detectCycle(1, simpleGraph)
 
     println(s"cycle: $simpleGraphCycle")
+
+    val directedCycleGraph = AdjacentListGraph(
+      4,
+      Map(
+        1 -> List(2, 3),
+        2 -> List(3),
+        3 -> List(4),
+        4 -> List(2)
+      )
+    )
+
+    val directedCycle = DetectCycleDirected.detectCycle(1, directedCycleGraph)
+
+    println(s"directed cycle: $directedCycle")
   }
 
 }
