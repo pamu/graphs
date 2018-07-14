@@ -23,7 +23,7 @@ object Main {
       .map(_.mkString(", "))
       .mkString("\n")
 
-    println(s"dfs: $dfsResult")
+    println(s"dfs:\n$dfsResult")
 
     val bfsResult = GraphTraversal
       .bfs(1, graph)
@@ -31,7 +31,7 @@ object Main {
       .map(_.mkString(", "))
       .mkString("\n")
 
-    println(s"bfs: $bfsResult")
+    println(s"bfs:\n$bfsResult")
   }
 
 }

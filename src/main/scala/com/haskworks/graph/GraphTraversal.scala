@@ -16,9 +16,6 @@ object GraphTraversal {
 
     @scala.annotation.tailrec
     def loop(queue: List[Vertex[A]], visited: Set[A], result: List[List[A]]): List[List[A]] = {
-
-      println(s"queue: $queue visited: $visited result: $result")
-
       if (queue.isEmpty) result
       else {
         queue.head match {
@@ -31,7 +28,8 @@ object GraphTraversal {
               .map(list => (value :: list) :: result.tail)
               .getOrElse(List(value) :: result)
 
-            val newVisited = visited + value ++ neighbours
+            // Its important to mark current node and neighbors as visited
+            val newVisited = visited ++ neighbours
 
             val newQueue = queue.tail ++ neighbours.map(Node(_))
 
@@ -44,7 +42,7 @@ object GraphTraversal {
       }
     }
 
-    loop(Node(source) :: Sentinel :: Nil, Set(), Nil)
+    loop(Node(source) :: Sentinel :: Nil, Set(source), Nil)
   }
 
 }
